@@ -28,8 +28,8 @@ class ContentRating(Base):
 
     def __init__(self, location, ratingId, contentTypeId):
         self.location = location
-        self.rating_type_id = ratingId
-        selft.content_type_id = contentTypeId
+        self.rating_id = ratingId
+        self.content_type_id = contentTypeId
 
     def __repr__(self):
         return '<Content Rating: Location: %s - Rating Id: %d - Content Type Id: %d >' % (self.location, self.rating_id, self.content_type_id)
