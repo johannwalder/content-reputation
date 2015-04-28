@@ -18,7 +18,8 @@ class Rating(Base):
             'terms': self.terms        
         }
 
-    def __init__(self, level, terms):
+    def __init__(self, id, level, terms):
+        self.id = id
         self.level = level
         self.terms = terms
 

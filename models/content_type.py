@@ -16,7 +16,8 @@ class ContentType(Base):
             'content_type': self.content_type      
         }
 
-    def __init__(self, contentType):
+    def __init__(self, id, contentType):
+        self.id = id
         self.content_type = contentType
 
     def __repr__(self):
