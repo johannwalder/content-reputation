@@ -1,6 +1,9 @@
 # content-reputation
 A small collection of different technologies combined into a sample project.
 
+More information (i.e. Trello board, Idea pool,...) will be soon available at the project page:
+http://johannwalder.github.io/content-reputation/ 
+
 **Technologies:**
 
 In this project there will be several different technologies touched included but not limited to:
