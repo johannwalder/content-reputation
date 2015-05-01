@@ -36,12 +36,22 @@
 
 <p>The project will include several different technologies and the basic idea is to create 
 an automatic content reputation system which rates web page or file content.
-
+The settings and crawling results will be saved in a Postgres database and for displaying rating results
+the data will be cached in Redis. The settings will contain URLs and file paths to crawl and it will be 
+possible to use wildcard inclusions and exlusions of content to check.
+To access ratings from the front ends a Restful-API will be created with Node.js or Flask.
+The client itself will use AngularJS with Bootstrap.
+Furthermore the whole project should be integrated into Docker for easy deployments.
 </p>
+
+<p>The Trello board for this project can be found here: https://trello.com/b/2CJ5UQ0W/content-reputation</p>
+
 <p>This list contains an overview of ideas that will be implemented/performed:</p>
 
 <ul>
   <li>Connect Python to Postgres</li>
+  <li>Create Restful-API with eiter Flask or Node.js (or for learning purposes even both)</li>
+  <li>Create a client to display rating results in different visualizations with AngularJS and Bootstrap</li>
   <li>Unit testing different technologies</li>
   <li>Test automation</li>
   <li>Using Selenium with Python to test the front end</li>
