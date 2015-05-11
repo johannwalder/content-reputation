@@ -37,6 +37,11 @@ rating_fields = {
 
 class RatingListAPI(Resource):
     def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('level', type = str, required = True,
+             help = 'No rating level provided', location = 'json')
+        self.reqparse.add_argument('terms', type = str, required = True,
+             help = 'No rating terms provided', location = 'json')
         super(RatingListAPI, self).__init__()
 
     def get(self):
