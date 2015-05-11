@@ -45,7 +45,17 @@ class RatingListAPI(Resource):
         super(RatingListAPI, self).__init__()
 
     def get(self):
-        ratings = session.query(Rating).all()
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('limit', type = int, default=10,
+             location = 'args')
+        self.reqparse.add_argument('offset', type = int, default=0,
+             location = 'args')
+
+        args = self.reqparse.parse_args()
+
+        limit = args.get('limit')
+        offset = args.get('offset')
+        ratings = session.query(Rating).limit(limit).offset(offset).all()
         return {'ratings': [marshal(rating, rating_fields) for rating in ratings]}
 
 api.add_resource(RatingListAPI, '/api/v1.0/ratings', endpoint='ratings')
