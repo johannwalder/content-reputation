@@ -32,7 +32,8 @@ auth = HTTPBasicAuth()
 rating_fields = {
     'id': fields.Integer,
     'level': fields.String,
-    'terms': fields.String
+    'terms': fields.String,
+    'uri': fields.Url('rating')
 }
 
 class RatingListAPI(Resource):
@@ -58,4 +59,21 @@ class RatingListAPI(Resource):
         ratings = session.query(Rating).limit(limit).offset(offset).all()
         return {'ratings': [marshal(rating, rating_fields) for rating in ratings]}
 
+
+class RatingAPI(Resource):
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('level', type = str, required = True,
+             help = 'No rating level provided', location = 'json')
+        self.reqparse.add_argument('terms', type = str, required = True,
+             help = 'No rating terms provided', location = 'json')
+        super(RatingAPI, self).__init__()
+
+    def get(self, id):
+        rating = session.query(Rating).filter(Rating.id == id).all()
+        if len(rating) == 0: 
+            abort(404) 
+        return {'rating': marshal(rating[0], rating_fields)} 
+
 api.add_resource(RatingListAPI, '/api/v1.0/ratings', endpoint='ratings')
+api.add_resource(RatingAPI, '/api/v1.0/ratings/<int:id>', endpoint = 'rating')
