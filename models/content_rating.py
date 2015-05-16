@@ -20,15 +20,15 @@ class ContentRating(Base):
             'id': self.id, 
             'location': self.location,
             'rating': self.rating.level,
-            'content_type_id': self.content_type_id   
+            'contenttype': self.contenttype.title   
         }
 
-    def __init__(self, location, rating, contentTypeId):
+    def __init__(self, location, rating, contentType):
         self.location = location
         self.rating = rating
-        self.content_type_id = contentTypeId
+        self.contentType = contentType
 
     def __repr__(self):
-        return '<Content Rating: Location: %s - Rating Id: %d - Content Type Id: %d >' % (self.location, self.rating.level, self.content_type_id)
+        return '<Content Rating: Location: %s - Rating Id: %d - Content Type Id: %d >' % (self.location, self.rating.level, self.contentType.Title)
 
 
