@@ -9,7 +9,6 @@ from content_type import ContentType
 class ContentRating(Base):
     """Contains the different results of rated content"""
     __tablename__ = 'content_rating'
-    id = Column(Integer, primary_key=True)
     # location saves the URL or path of the content based on the ContentType
     location = Column(String(2048), unique=False)
     rating_id = Column(Integer, ForeignKey('rating.id'))

@@ -8,7 +8,6 @@ from base import Base
 class ContentType(Base):
     """Contains the different content types (web page, file)"""
     __tablename__ = 'content_type'
-    id = Column(Integer, primary_key=True)
     title = Column(String(80), unique=True)
     contentratings = relationship('ContentRating',backref='contentType',lazy='dynamic')
 
