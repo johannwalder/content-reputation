@@ -1,7 +1,8 @@
 #!usr/bin/python
 
 from sqlalchemy import Column, String, Integer
- 
+from sqlalchemy.orm import relationship
+
 from base import Base
 
 class Rating(Base):
@@ -10,6 +11,7 @@ class Rating(Base):
     id = Column(Integer, primary_key=True)
     level = Column(String(80), unique=True)
     terms = Column(String(2048), unique=True)
+    contentratings = relationship('ContentRating',backref='rating',lazy='dynamic')
 
     def serialize(self):
         return {        

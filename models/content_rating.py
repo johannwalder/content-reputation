@@ -1,7 +1,6 @@
 #!usr/bin/python
 
 from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlalchemy.orm import relationship
 
 from base import Base
 from rating import Rating
@@ -15,23 +14,21 @@ class ContentRating(Base):
     location = Column(String(2048), unique=False)
     rating_id = Column(Integer, ForeignKey('rating.id'))
     content_type_id = Column(Integer, ForeignKey('content_type.id'))
-    rating = relationship("Rating")
-    contentType = relationship("ContentType")
 
     def serialize(self):
         return {        
             'id': self.id, 
             'location': self.location,
-            'rating_id': self.rating_id,
+            'rating': self.rating.level,
             'content_type_id': self.content_type_id   
         }
 
-    def __init__(self, location, ratingId, contentTypeId):
+    def __init__(self, location, rating, contentTypeId):
         self.location = location
-        self.rating_id = ratingId
+        self.rating = rating
         self.content_type_id = contentTypeId
 
     def __repr__(self):
-        return '<Content Rating: Location: %s - Rating Id: %d - Content Type Id: %d >' % (self.location, self.rating_id, self.content_type_id)
+        return '<Content Rating: Location: %s - Rating Id: %d - Content Type Id: %d >' % (self.location, self.rating.level, self.content_type_id)
 
 
